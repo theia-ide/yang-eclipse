@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="yang"
+            id="io.typefox.yang"
+            name="YANG"
+            priority="normal">
+      </content-type>
+   </extension>
+   <extension
+         point="org.eclipse.lsp4e.languageServer">
+      <server
+            class="io.typefox.yang.eclipse.YangLanguageServer"
+            id="io.typefox.yang.eclipse.server"
+            label="YANG Language Server">
+      </server>
+      <contentTypeMapping
+            contentType="io.typefox.yang"
+            id="io.typefox.yang.eclipse.server">
+      </contentTypeMapping>
+   </extension>
+
+</plugin>
