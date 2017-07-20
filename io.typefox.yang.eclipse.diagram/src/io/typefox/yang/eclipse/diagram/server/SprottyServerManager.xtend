@@ -29,8 +29,7 @@ class SprottyServerManager {
 	
 	def synchronized void start() {
 		if (server === null || !server.isRunning) {
-			// TODO find a free port automatically
-			server = new Server(new InetSocketAddress('localhost', 8087))
+			server = new Server(new InetSocketAddress('localhost', 0))
 			configure(server)
 			server.start()
 		}

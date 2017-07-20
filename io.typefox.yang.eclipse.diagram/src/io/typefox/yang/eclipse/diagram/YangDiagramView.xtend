@@ -51,7 +51,7 @@ class YangDiagramView extends ViewPart {
 		val serverManager = YangDiagramPlugin.instance.serverManager
 		serverManager.start()
 		val connector = serverManager.server.connectors.head as ServerConnector
-		browser.url = '''http://«connector.host»:«connector.port»/diagram.html?client=«encodeParameter(clientId)»&path=«encodeParameter(path)»'''
+		browser.url = '''http://«connector.host»:«connector.localPort»/diagram.html?client=«encodeParameter(clientId)»&path=«encodeParameter(path)»'''
 	}
 	
 	protected def String encodeParameter(String parameter) {
