@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YANG Diagrams for Eclipse
+Bundle-SymbolicName: io.typefox.yang.eclipse.diagram;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: TypeFox
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: io.typefox.yang.eclipse.diagram.YangDiagramPlugin
+Require-Bundle: com.google.guava,
+ com.google.gson;bundle-version="2.7.0",
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.core.runtime;bundle-version="3.6.0",
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ org.eclipse.ui;bundle-version="3.6.0",
+ org.eclipse.lsp4j;bundle-version="0.2.0",
+ org.eclipse.lsp4j.jsonrpc;bundle-version="0.2.0",
+ org.eclipse.lsp4e;bundle-version="0.2.0",
+ javax.servlet;bundle-version="3.1.0",
+ javax.websocket;bundle-version="1.1.0",
+ org.eclipse.jetty.server;bundle-version="9.4.6",
+ org.eclipse.jetty.servlet;bundle-version="9.4.6",
+ org.eclipse.jetty.util;bundle-version="9.4.6",
+ org.eclipse.jetty.websocket.javax.websocket;bundle-version="9.4.6",
+ org.eclipse.jetty.websocket.javax.websocket.server;bundle-version="9.4.6"
+Export-Package: io.typefox.yang.eclipse.diagram

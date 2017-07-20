@@ -19,12 +19,13 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 class SocketStreamConnectionProvider implements StreamConnectionProvider {
 
 	val int port
+	
 	Socket socket
 	InputStream inputStream
 	OutputStream outputStream
 
 	override start() throws IOException {
-		this.socket = new Socket('localhost', port)
+		socket = new Socket('localhost', port)
 		inputStream = new BufferedInputStream(socket.inputStream)
 		outputStream = new BufferedOutputStream(socket.outputStream)
 	}

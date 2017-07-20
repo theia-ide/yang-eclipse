@@ -1,0 +1,5 @@
+/.vscode/
+/lib/
+/app/sprotty/
+/app/bundle.*
+node_modules/

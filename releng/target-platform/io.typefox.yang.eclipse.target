@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="io.typefox.yang.eclipse" sequenceNumber="3">
+<?pde version="3.8"?><target name="io.typefox.yang.eclipse" sequenceNumber="8">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.lsp4e" version="0.3.0.201707181522"/>
-<unit id="org.eclipse.lsp4e.source" version="0.3.0.201707181522"/>
-<repository location="http://download.eclipse.org/lsp4e/snapshots/"/>
+<unit id="org.eclipse.sdk.ide" version="4.7.0.I20170612-0950"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.7"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.xtend.sdk.feature.group" version="2.12.0.v20170519-1412"/>
 <repository location="http://download.eclipse.org/releases/oxygen"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.sdk.ide" version="4.7.0.I20170612-0950"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.7"/>
+<unit id="org.eclipse.lsp4j.sdk.feature.group" version="0.2.0.v20170518-0647"/>
+<repository location="http://download.eclipse.org/lsp4j/updates/releases/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.lsp4e" version="0.3.0.201707181522"/>
+<unit id="org.eclipse.lsp4e.source" version="0.3.0.201707181522"/>
+<repository location="http://download.eclipse.org/lsp4e/snapshots/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.jetty.bundles.f.source.feature.group" version="9.4.6.201706061653"/>
+<unit id="org.eclipse.jetty.bundles.f.feature.group" version="9.4.6.201706061653"/>
+<repository location="http://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.4.6.v20170531/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.apache.jasper" version="8.5.16"/>
+<repository location="http://download.eclipse.org/gemini/updates/web/3.0.3"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.apache.commons.io" version="2.2.0.v201405211200"/>
+<repository location="http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository"/>
 </location>
 </locations>
 </target>

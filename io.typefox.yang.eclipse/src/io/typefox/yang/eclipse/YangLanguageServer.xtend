@@ -25,6 +25,7 @@ class YangLanguageServer implements StreamConnectionProvider {
 			this.delegate = new SocketStreamConnectionProvider(5007)
 		} else {
 			try {
+				// TODO support the case when this plug-in is packaged in a jar
 				val commands = newArrayList
 				commands += new File(FileLocator.resolve(executable).toURI).absolutePath
 				this.delegate = new ProcessStreamConnectionProvider(commands, Platform.location.toOSString) {}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="io.typefox.yang"
+            name="YANG">
+      </category>
+      <view
+            allowMultiple="true"
+            category="io.typefox.yang"
+            class="io.typefox.yang.eclipse.diagram.YangDiagramView"
+            icon="icons/diagram.png"
+            id="io.typefox.yang.eclipse.diagram"
+            name="YANG Diagram"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="io.typefox.yang"
+            defaultHandler="io.typefox.yang.eclipse.diagram.OpenDiagramHandler"
+            description="Open a YANG Diagram Viewer"
+            id="io.typefox.yang.eclipse.diagram.open"
+            name="Open Diagram">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="io.typefox.yang.eclipse.diagram.open"
+               icon="icons/diagram.png"
+               label="Open Diagram"
+               style="push"
+               tooltip="Open a YANG Diagram Viewer">
+            <visibleWhen
+                  checkEnabled="false">
+             <and>
+                <count
+                      value="1">
+                </count>
+                <iterate>
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
+                     <test
+                           property="org.eclipse.core.resources.extension"
+                           value="yang">
+                     </test>
+                  </adapt>
+                </iterate>
+             </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

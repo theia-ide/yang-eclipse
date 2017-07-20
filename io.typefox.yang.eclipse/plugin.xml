@@ -15,13 +15,23 @@
          point="org.eclipse.lsp4e.languageServer">
       <server
             class="io.typefox.yang.eclipse.YangLanguageServer"
+            clientImpl="io.typefox.yang.eclipse.diagram.DiagramAwareLanguageClientImpl"
             id="io.typefox.yang.eclipse.server"
-            label="YANG Language Server">
+            label="YANG Language Server"
+            serverInterface="io.typefox.yang.eclipse.diagram.DiagramAwareLanguageServer">
       </server>
       <contentTypeMapping
             contentType="io.typefox.yang"
             id="io.typefox.yang.eclipse.server">
       </contentTypeMapping>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="YANG Editor Commands"
+            id="io.typefox.yang"
+            name="YANG">
+      </category>
    </extension>
 
 </plugin>
