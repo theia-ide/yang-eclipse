@@ -26,6 +26,39 @@
       </contentTypeMapping>
    </extension>
    <extension
+         point="org.eclipse.ui.genericeditor.presentationReconcilers">
+      <presentationReconciler
+            class="org.eclipse.tm4e.ui.text.TMPresentationReconciler"
+            contentType="io.typefox.yang">
+      </presentationReconciler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editorContentTypeBinding
+            contentTypeId="io.typefox.yang"
+            editorId="org.eclipse.ui.genericeditor.GenericEditor">
+      </editorContentTypeBinding>
+      <editor
+            class="org.eclipse.ui.internal.genericeditor.ExtensionBasedTextEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            icon="icons/yin_yang.png"
+            id="io.typefox.YangEditor"
+            name="Yang Editor">
+            <contentTypeBinding contentTypeId="io.typefox.yang"/>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.tm4e.registry.grammars">
+      <grammar
+            path="syntax/yang.tmLanguage.json"
+            scopeName="source.yang">
+      </grammar>
+      <scopeNameContentTypeBinding
+            contentTypeId="io.typefox.yang"
+            scopeName="source.yang">
+      </scopeNameContentTypeBinding>
+   </extension>
+   <extension
          point="org.eclipse.ui.commands">
       <category
             description="YANG Editor Commands"

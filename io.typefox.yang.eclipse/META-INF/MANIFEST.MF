@@ -12,7 +12,10 @@ Require-Bundle: com.google.guava,
  org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.core.contenttype;bundle-version="3.6.0",
  org.eclipse.ui;bundle-version="3.6.0",
- org.eclipse.lsp4e;bundle-version="0.2.0",
- io.typefox.yang.eclipse.diagram
+ org.eclipse.lsp4e,
+ io.typefox.yang.eclipse.diagram,
+ org.eclipse.tm4e.ui;bundle-version="0.1.0",
+ org.eclipse.ui.genericeditor;bundle-version="1.0.0",
+ org.eclipse.ui.editors;bundle-version="3.11.0"
 Export-Package: io.typefox.yang.eclipse
 
