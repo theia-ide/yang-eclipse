@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="io.typefox.yang.eclipse.feature"
+      label="MyDsl Feature "
+      version="0.1.0.qualifier">
+
+   <plugin
+         id="io.typefox.yang.eclipse"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="io.typefox.yang.eclipse.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

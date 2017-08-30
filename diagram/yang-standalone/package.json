@@ -1,0 +1,31 @@
+{
+  "name": "yang-eclipse-diagram",
+  "version": "0.1.0",
+  "description": "YANG diagram client for Eclipse",
+  "dependencies": {
+    "reconnecting-websocket": "^3.0.7",
+    "sprotty": "0.1.2",
+    "yang-sprotty": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.14",
+    "copy-webpack-plugin": "^4.0.1",
+    "reflect-metadata": "^0.1.10",
+    "rimraf": "^2.6.1",
+    "tsc-watch": "^1.0.7",
+    "typescript": "^2.4.1",
+    "webpack": "^2.7.0",
+    "css-loader": "^0.28.1",
+    "file-loader": "^0.11.1",
+    "source-map-loader": "^0.2.1",
+    "url-loader": "^0.5.8",
+    "style-loader": "^0.18.2"
+
+  },
+  "scripts": {
+    "clean": "rimraf lib app/*.bundle.js app/*.bundle.js.map app/sprotty",
+    "build": "tsc && webpack",
+    "build2": "tsc && webpack --env.uglify",
+    "watch": "tsc-watch --onSuccess webpack"
+  }
+}

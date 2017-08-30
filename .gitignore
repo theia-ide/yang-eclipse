@@ -1,1 +1,6 @@
 bin/
+xtend-gen/
+lerna-debug.log
+node_modules/
+target/
+yang-eclipse/io.typefox.yang.eclipse.diagram/diagram

@@ -1,0 +1,14 @@
+{
+	"license": "Apache-2.0",
+	"devDependencies": {
+		"lerna": "^2.1.1"
+	},
+	"scripts": {
+		"setup": "lerna bootstrap --hoist -- --no-optional",
+		"refresh": "lerna clean --yes && yarn run bootstrap",
+		"clean": "lerna run clean --parallel",
+		"build": "lerna run build --stream",
+		"watch": "lerna run watch --parallel",
+		"update": "git submodule foreach git pull origin master"
+	}
+}
