@@ -42,9 +42,14 @@ class DiagramEndpoint extends Endpoint implements MessageHandler.Whole<String> {
 	override onMessage(String message) {
 		try {
 			val actionMessage = gson.fromJson(message, ActionMessage)
-			val server = findLanguageServerFor(actionMessage)
-			if (server instanceof DiagramServer) {
-				server.accept(actionMessage)
+			val action = actionMessage.action.asJsonObject
+			val kind = action.get('kind')?.asString
+			if (kind == LoggingAction.KIND) {
+				handleLogMessage(gson.fromJson(action, LoggingAction))
+			} else {
+				val server = findLanguageServerFor(actionMessage, kind)
+				if (server instanceof DiagramServer)
+					server.accept(actionMessage)
 			}
 		} catch (Exception exception) {
 			StatusManager.manager.handle(new Status(IStatus.ERROR, YangDiagramPlugin.PLUGIN_ID,
@@ -52,17 +57,28 @@ class DiagramEndpoint extends Endpoint implements MessageHandler.Whole<String> {
 		}
 	}
 	
-	protected def findLanguageServerFor(ActionMessage message) {
-		val action = message.action.asJsonObject
-		if (action.get('kind')?.asString == 'requestModel') {
+	protected def findLanguageServerFor(ActionMessage message, String kind) {
+		if (kind == 'requestModel') {
 			session.userProperties.put('clientId', message.clientId)
+			val action = message.action.asJsonObject
 			val options = action.get('options')?.asJsonObject
 			val sourceUri = options?.get('sourceUri')
-			if (sourceUri !== null) {
+			if (sourceUri !== null)
 				sourceFile = LSPEclipseUtils.findResourceFor(sourceUri.asString) as IFile
-			}
 		}
 		return YangDiagramPlugin.instance.getLanguageServer(sourceFile)
+	}
+	
+	protected def handleLogMessage(LoggingAction action) {
+		val parameters = if (action.params !== null && !action.params.empty) ' (' + action.params.join(', ') + ')' else ''
+		val content = action.caller + ': ' + action.message + parameters
+		val severity = switch action.severity {
+			case 'error': IStatus.ERROR
+			case 'warn': IStatus.WARNING
+			default: IStatus.INFO
+		}
+		val messageStatus = new Status(severity, YangDiagramPlugin.PLUGIN_ID, content)
+		StatusManager.manager.handle(messageStatus, StatusManager.LOG)
 	}
 	
 }

@@ -31,10 +31,14 @@ import {
     undoRedoModule,
     viewportModule,
     ViewRegistry,
-    WebSocketDiagramServer
+    WebSocketDiagramServer,
+    LogLevel,
+    ForwardingLogger
 } from 'sprotty/lib'
 
 const yangDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
+    rebind(TYPES.ILogger).to(ForwardingLogger).inSingletonScope()
+    rebind(TYPES.LogLevel).toConstantValue(LogLevel.info)
     rebind(TYPES.IModelFactory).to(YangDiagramFactory).inSingletonScope()
     bind(TYPES.ModelSource).to(WebSocketDiagramServer).inSingletonScope()
 })
