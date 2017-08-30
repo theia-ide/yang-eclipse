@@ -35,9 +35,14 @@ class YangDiagramView extends ViewPart {
 	}
 	
 	override dispose() {
-		val server = YangDiagramPlugin.instance.getLanguageServer('file:' + filePath)
+		val bundle = YangDiagramPlugin.instance
+		val server = bundle.getLanguageServer('file:' + filePath)
 		if (server instanceof DiagramServer) {
 			server.didClose(clientId)
+		}
+		val session = bundle.serverManager.getSessionFor(clientId)
+		if (session !== null && session.isOpen) {
+			session.close()
 		}
 		super.dispose()
 	}
