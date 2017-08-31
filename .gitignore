@@ -4,3 +4,4 @@ lerna-debug.log
 node_modules/
 target/
 yang-eclipse/io.typefox.yang.eclipse.diagram/diagram
+yang-eclipse/io.typefox.yang.eclipse/language-server

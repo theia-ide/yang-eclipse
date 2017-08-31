@@ -12,10 +12,41 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>language-server</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/language-server</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/../../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>

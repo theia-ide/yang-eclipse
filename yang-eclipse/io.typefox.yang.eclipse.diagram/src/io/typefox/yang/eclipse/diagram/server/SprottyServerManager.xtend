@@ -43,7 +43,7 @@ class SprottyServerManager {
         val defaultServletHolder = new ServletHolder('default', new DefaultServlet)
 		// TODO support the case when this plug-in is packaged in a jar
 		val bundle = YangDiagramPlugin.instance.bundle
-        val resourceBase = new File(FileLocator.resolve(bundle.getResource('./diagram/app')).toURI).absolutePath
+        val resourceBase = new File(FileLocator.resolve(bundle.getResource('./diagram')).toURI).absolutePath
         defaultServletHolder.setInitParameter('resourceBase', resourceBase)
         defaultServletHolder.setInitParameter('dirAllowed', 'false')
         context.addServlet(defaultServletHolder, '/')
