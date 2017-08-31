@@ -35,3 +35,7 @@
 .sprotty-popup-closed {
     display: none;
 }
+
+body {
+    background-color: #333;
+}
