@@ -25,3 +25,4 @@ Require-Bundle: com.google.guava,
  org.eclipse.jetty.websocket.javax.websocket;bundle-version="9.4.6",
  org.eclipse.jetty.websocket.javax.websocket.server;bundle-version="9.4.6"
 Export-Package: io.typefox.yang.eclipse.diagram
+Eclipse-BundleShape: dir

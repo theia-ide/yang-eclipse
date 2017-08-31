@@ -15,7 +15,7 @@ import org.eclipse.xtend.lib.annotations.Delegate
 
 class YangLanguageServer implements StreamConnectionProvider {
 	
-	static val SOCKET_MODE = true
+	static val SOCKET_MODE = false
 	
 	@Delegate
 	val StreamConnectionProvider delegate
@@ -27,7 +27,10 @@ class YangLanguageServer implements StreamConnectionProvider {
 			try {
 				// TODO support the case when this plug-in is packaged in a jar
 				val commands = newArrayList
-				commands += new File(FileLocator.resolve(executable).toURI).absolutePath
+				val executableFile = new File(FileLocator.resolve(executable).toURI)
+				if(!executableFile.canExecute)
+					executableFile.setExecutable(true, false)
+				commands += executableFile.absolutePath
 				this.delegate = new ProcessStreamConnectionProvider(commands, Platform.location.toOSString) {}
 			} catch (Exception e) {
 				throw new IllegalStateException(e)
@@ -38,9 +41,9 @@ class YangLanguageServer implements StreamConnectionProvider {
 	private def getExecutable() {
 		val bundle = Platform.getBundle('io.typefox.yang.eclipse')
 		if (System.getProperty('os.name').toLowerCase.contains('win'))
-			bundle.getResource('/yang-language-server/bin/yang-language-server.bat')
+			bundle.getResource('/language-server/bin/yang-language-server.bat')
 		else
-			bundle.getResource('/yang-language-server/bin/yang-language-server')
+			bundle.getResource('/language-server/bin/yang-language-server')
 	}
 	
 }

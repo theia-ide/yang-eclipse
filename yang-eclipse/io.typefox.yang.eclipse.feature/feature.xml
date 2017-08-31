@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="io.typefox.yang.eclipse.feature"
-      label="MyDsl Feature "
+      label="YANG for Eclipse"
       version="0.1.0.qualifier">
 
    <plugin
@@ -9,12 +9,13 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
+         unpack="true"/>
 
    <plugin
          id="io.typefox.yang.eclipse.diagram"
          download-size="0"
          install-size="0"
+         unpack="true"
          version="0.0.0"/>
 
 </feature>
