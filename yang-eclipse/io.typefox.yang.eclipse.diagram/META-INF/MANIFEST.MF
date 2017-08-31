@@ -31,3 +31,4 @@ Export-Package: io.typefox.yang.eclipse.diagram,
  io.typefox.yang.eclipse.diagram.server,
  io.typefox.yang.eclipse.diagram.sprotty
 Eclipse-BundleShape: dir
+Import-Package: org.apache.log4j;version="1.2.15"

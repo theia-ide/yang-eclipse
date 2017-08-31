@@ -14,8 +14,11 @@ import org.eclipse.swt.browser.Browser
 import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
+import org.apache.log4j.Logger
 
 class YangDiagramView extends ViewPart {
+	
+	static val LOG = Logger.getLogger(YangDiagramView)
 	
 	public static val ID = 'io.typefox.yang.eclipse.diagram'
 	
@@ -57,7 +60,9 @@ class YangDiagramView extends ViewPart {
 		val serverManager = YangDiagramPlugin.instance.serverManager
 		serverManager.start()
 		val connector = serverManager.server.connectors.head as ServerConnector
-		browser.url = '''http://«connector.host»:«connector.localPort»/diagram.html?client=«encodeParameter(clientId)»&path=«encodeParameter(path)»'''
+		val url = '''http://«connector.host»:«connector.localPort»/diagram.html?client=«encodeParameter(clientId)»&path=«encodeParameter(path)»'''
+		browser.url = url
+		LOG.warn(url)
 	}
 	
 	protected def String encodeParameter(String parameter) {

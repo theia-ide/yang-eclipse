@@ -25,7 +25,7 @@ if (sourcePath) {
     diagramServer.listen(websocket)
 
     websocket.addEventListener('open', event => {
-        diagramServer.handle(new RequestModelAction({ sourceUri: 'file:' + sourcePath }))
+        diagramServer.handle(new RequestModelAction({ sourceUri: 'file://' + sourcePath }))
     })
 
     websocket.addEventListener('error', event => {
