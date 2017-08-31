@@ -41,6 +41,8 @@
       <editor
             class="org.eclipse.ui.internal.genericeditor.ExtensionBasedTextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            default="true"
+            extensions="yang"
             icon="icons/yin_yang.png"
             id="io.typefox.YangEditor"
             name="Yang Editor">
