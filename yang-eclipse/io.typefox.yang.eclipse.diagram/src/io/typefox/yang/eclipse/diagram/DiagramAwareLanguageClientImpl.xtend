@@ -7,11 +7,16 @@
 package io.typefox.yang.eclipse.diagram
 
 import com.google.gson.Gson
+import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
+import io.typefox.yang.eclipse.diagram.sprotty.IdeDiagramClient
+import io.typefox.yang.eclipse.diagram.sprotty.OpenInTextEditorMessage
 import org.eclipse.lsp4e.LanguageClientImpl
 
-class DiagramAwareLanguageClientImpl extends LanguageClientImpl implements DiagramEndpoint {
+class DiagramAwareLanguageClientImpl extends LanguageClientImpl implements IdeDiagramClient {
 	
 	val gson = new Gson
+	
+	val opener = new YangEditorOpener
 	
 	override accept(ActionMessage actionMessage) {
 		val session = YangDiagramPlugin.instance.serverManager.getSessionFor(actionMessage.clientId)
@@ -20,5 +25,11 @@ class DiagramAwareLanguageClientImpl extends LanguageClientImpl implements Diagr
 			session.asyncRemote.sendText(json)
 		}
 	}
+	
+	override openInTextEditor(OpenInTextEditorMessage message) {
+		opener.openInTextEditor(message)
+		return
+	}
+	
 	
 }

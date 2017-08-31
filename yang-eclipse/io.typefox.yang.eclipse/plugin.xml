@@ -18,7 +18,7 @@
             clientImpl="io.typefox.yang.eclipse.diagram.DiagramAwareLanguageClientImpl"
             id="io.typefox.yang.eclipse.server"
             label="YANG Language Server"
-            serverInterface="io.typefox.yang.eclipse.diagram.DiagramAwareLanguageServer">
+            serverInterface="io.typefox.yang.eclipse.diagram.sprotty.DiagramAwareLanguageServer">
       </server>
       <contentTypeMapping
             contentType="io.typefox.yang"

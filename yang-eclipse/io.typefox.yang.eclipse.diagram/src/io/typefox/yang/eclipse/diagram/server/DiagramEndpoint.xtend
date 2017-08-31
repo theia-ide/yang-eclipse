@@ -7,9 +7,9 @@
 package io.typefox.yang.eclipse.diagram.server
 
 import com.google.gson.Gson
-import io.typefox.yang.eclipse.diagram.ActionMessage
-import io.typefox.yang.eclipse.diagram.DiagramServer
 import io.typefox.yang.eclipse.diagram.YangDiagramPlugin
+import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
+import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
 import javax.websocket.Endpoint
 import javax.websocket.EndpointConfig
 import javax.websocket.MessageHandler

@@ -6,6 +6,7 @@
  */
 package io.typefox.yang.eclipse.diagram
 
+import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
 import java.net.URLEncoder
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.swt.SWT
