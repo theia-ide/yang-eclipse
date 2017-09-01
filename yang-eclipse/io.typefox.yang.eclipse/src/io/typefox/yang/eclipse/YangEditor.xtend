@@ -28,7 +28,7 @@ class YangEditor extends ExtensionBasedTextEditor {
 	}
 	
 	override dispose() {
-		sourceViewer.textWidget.removeCaretListener(caretListener)
+		sourceViewer?.textWidget?.removeCaretListener(caretListener)
 		super.dispose()
 	}
 }
