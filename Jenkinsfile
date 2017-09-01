@@ -13,10 +13,10 @@ node {
 		dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
 		
 		stage 'Yang LSP build'
-		dir ('..') {
+		dir ($WORKSPACE) {
 			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/yang-tools/yang-lsp.git']]])
 		}
-		dir ('../yang-lsp/yang-lsp') {
+		dir ("$WORKSPACE/yang-lsp/yang-lsp") {
 			sh './gradlew installDist'
 		}
 
