@@ -12,7 +12,15 @@ node {
 		dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
 		dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
 		
-		stage 'Maven Build'
+		stage 'Yang LSP build'
+		dir ('..') {
+			git url: 'https://github.com/yang-tools/yang-lsp.git', branch: master
+		}
+		dir ('../yang-lsp/yang-lsp') {
+			sh './gradlew installDist'
+		}
+
+		stage 'Yang Eclipse Build'
 		def mvnHome = tool 'M3'
 		dir('yang-eclipse') {
 			try {
