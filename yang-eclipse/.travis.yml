@@ -1,0 +1,21 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+os:
+  - linux
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+  - $HOME/.m2/repository
+
+script:
+  - pushd yang-eclipse && mvn clean install && popd
+
+notifications:
+  slack: theia-dev:wZFIkC6bV4WUqsnT6YxzGoMq
