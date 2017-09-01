@@ -22,7 +22,7 @@ install:
 
 script:
   - pushd ../yang-lsp/yang-lsp && ./gradlew installDist && popd
-  - pushd diagram && yarn run setup && yarn install && yarn run build && popd
+  - pushd diagram && yarn install && yarn run setup && yarn run build && popd
   - pushd yang-eclipse && mvn clean install && popd
 
 notifications:
