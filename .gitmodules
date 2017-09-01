@@ -1,6 +1,6 @@
 [submodule "diagram/sprotty"]
 	path = diagram/sprotty
-	url = git@github.com:theia-ide/sprotty
+	url = https://github.com:theia-ide/sprotty
 [submodule "diagram/yang-sprotty"]
 	path = diagram/yang-sprotty
-	url = git@github.com:yang-tools/yang-sprotty
+	url = https://github.com:yang-tools/yang-sprotty
