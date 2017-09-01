@@ -14,15 +14,16 @@ node {
 		
 		stage 'Maven Build'
 		def mvnHome = tool 'M3'
-		try {
-			wrap([$class:'Xvnc', useXauthority: true]) {
-				sh "${mvnHome}/bin/mvn --batch-mode -fae -Dmaven.test.failure.ignore=true -Dmaven.repo.local=.m2/repository clean install"
+		dir('yang-eclipse') {
+			try {
+				wrap([$class:'Xvnc', useXauthority: true]) {
+					sh "${mvnHome}/bin/mvn --batch-mode -fae -Dmaven.test.failure.ignore=true -Dmaven.repo.local=.m2/repository clean install"
+				}
+			} finally {
+				step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
 			}
-		} finally {
-			step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
+			archive 'build/**'
 		}
-		archive 'build/**'
-		
 		if (currentBuild.result == 'UNSTABLE') {
 			slackSend color: 'warning', message: "Build Unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 		} else {
