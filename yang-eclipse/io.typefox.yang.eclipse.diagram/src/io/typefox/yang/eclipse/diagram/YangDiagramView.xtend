@@ -8,13 +8,15 @@ package io.typefox.yang.eclipse.diagram
 
 import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
 import java.net.URLEncoder
+import org.apache.log4j.Logger
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.swt.SWT
 import org.eclipse.swt.browser.Browser
 import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
-import org.apache.log4j.Logger
+import org.eclipse.swt.events.MouseTrackAdapter
+import org.eclipse.swt.events.MouseEvent
 
 class YangDiagramView extends ViewPart {
 	
@@ -32,6 +34,15 @@ class YangDiagramView extends ViewPart {
 		if (!viewSite.secondaryId.nullOrEmpty) {
 			showFile(viewSite.secondaryId)
 		}
+		browser.addMouseTrackListener(new MouseTrackAdapter() {
+			override mouseEnter(MouseEvent e) {
+				browser.execute('''
+					var event = new MouseEvent('mouseup', {
+					});
+					document.getElementById("sprotty").children[0].dispatchEvent(event);
+				''')
+			}
+		})
 	}
 	
 	override setFocus() {
