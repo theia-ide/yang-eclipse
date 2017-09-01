@@ -32,6 +32,12 @@ class YangLanguageServer implements StreamConnectionProvider {
 					executableFile.setExecutable(true, false)
 				commands += executableFile.absolutePath
 				this.delegate = new ProcessStreamConnectionProvider(commands, Platform.location.toOSString) {}
+				Runtime.runtime.addShutdownHook(new Thread() {
+					override run() {
+						(delegate as ProcessStreamConnectionProvider)?.stop()
+					}
+				})
+				
 			} catch (Exception e) {
 				throw new IllegalStateException(e)
 			}
