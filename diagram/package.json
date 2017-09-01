@@ -5,7 +5,7 @@
 	},
 	"scripts": {
 		"setup": "lerna bootstrap --hoist -- --no-optional",
-		"refresh": "lerna clean --yes && yarn run bootstrap",
+		"refresh": "lerna clean --yes && yarn run setup",
 		"clean": "lerna run clean --parallel",
 		"build": "lerna run build --stream",
 		"watch": "lerna run watch --parallel",

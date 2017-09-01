@@ -15,14 +15,14 @@ cache:
   - $HOME/.m2/repository
 
 before-install:
-  - sudo apt-get install -y yarn
+  - sudo apt-get install -y npm
 
 install:
   - pushd .. && git clone https://github.com/yang-tools/yang-lsp.git && popd
 
 script:
   - pushd ../yang-lsp/yang-lsp && ./gradlew installDist && popd
-  - pushd diagram && yarn install && yarn run setup && yarn run build && popd
+  - pushd diagram && npm install && yarn install && yarn run setup && yarn run build && popd
   - pushd yang-eclipse && mvn clean install && popd
 
 notifications:
