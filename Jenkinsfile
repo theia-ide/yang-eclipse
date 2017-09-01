@@ -14,7 +14,7 @@ node {
 		
 		stage 'Yang LSP build'
 		dir ('..') {
-			git url: 'https://github.com/yang-tools/yang-lsp.git', branch: master
+			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/yang-tools/yang-lsp.git']]])
 		}
 		dir ('../yang-lsp/yang-lsp') {
 			sh './gradlew installDist'
