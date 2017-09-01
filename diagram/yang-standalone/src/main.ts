@@ -5,8 +5,8 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import 'reflect-metadata'
-import { TYPES, WebSocketDiagramServer, RequestModelAction } from "sprotty/lib"
+import 'reflect-metadata';
+import { TYPES, WebSocketDiagramServer, RequestModelAction, ActionHandlerRegistry, SelectCommand } from "sprotty/lib"
 import { getParameters } from "./url-parameters"
 import createContainer from "./di.config"
 import 'yang-sprotty/css/diagram.css'
@@ -20,6 +20,9 @@ if (sourcePath) {
     const websocket = new WebSocket('ws://' + window.location.host + '/sprotty')
 
     const diagramServer = container.get<WebSocketDiagramServer>(TYPES.ModelSource)
+    const actionHandlerRegistry = container.get<ActionHandlerRegistry>(TYPES.ActionHandlerRegistry)
+    actionHandlerRegistry.register(SelectCommand.KIND, diagramServer)
+
     if (urlParameters.client)
         diagramServer.clientId = urlParameters.client
     diagramServer.listen(websocket)

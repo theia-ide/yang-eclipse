@@ -29,7 +29,12 @@ class YangEditorOpener {
 			if(file.accessible) {
 				val editorInput = new FileEditorInput(file)
 				Display.^default.asyncExec [
-					val editor = PlatformUI.workbench.activeWorkbenchWindow.activePage.openEditor(editorInput, 'io.typefox.YangEditor')
+					val page = PlatformUI.workbench.activeWorkbenchWindow.activePage
+					val editor = if(message.forceOpen) {
+						 	page.openEditor(editorInput, 'io.typefox.YangEditor')
+						} else {
+							page.findEditor(editorInput)
+						}
 					if (editor instanceof ITextEditor) {
 						val document = editor.documentProvider.getDocument(editorInput)
 						val range = message.location.range
