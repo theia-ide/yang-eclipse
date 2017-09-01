@@ -39,7 +39,7 @@
             editorId="org.eclipse.ui.genericeditor.GenericEditor">
       </editorContentTypeBinding>
       <editor
-            class="org.eclipse.ui.internal.genericeditor.ExtensionBasedTextEditor"
+            class="io.typefox.yang.eclipse.YangEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="yang"
