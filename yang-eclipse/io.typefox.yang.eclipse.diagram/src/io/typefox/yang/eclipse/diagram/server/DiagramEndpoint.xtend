@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import io.typefox.yang.eclipse.diagram.YangDiagramPlugin
 import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
 import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
+import java.util.List
 import javax.websocket.Endpoint
 import javax.websocket.EndpointConfig
 import javax.websocket.MessageHandler
@@ -20,13 +21,15 @@ import org.eclipse.core.runtime.Status
 import org.eclipse.lsp4e.LSPEclipseUtils
 import org.eclipse.ui.statushandlers.StatusManager
 
-class DiagramEndpoint extends Endpoint implements MessageHandler.Whole<String> {
+class DiagramEndpoint extends Endpoint implements MessageHandler.Partial<String> {
 	
 	val gson = new Gson
 	
 	Session session
 	
 	IFile sourceFile
+	
+	val List<String> partialMessages = newArrayList
 	
 	override onOpen(Session session, EndpointConfig config) {
 		this.session = session
@@ -39,7 +42,16 @@ class DiagramEndpoint extends Endpoint implements MessageHandler.Whole<String> {
 				"Error in diagram web socket", throwable))
 	}
 	
-	override onMessage(String message) {
+	override onMessage(String partialMessage, boolean last) {
+		partialMessages += partialMessage
+		if (last) {
+			val entireMessage = partialMessages.join
+			partialMessages.clear
+			onMessage(entireMessage)
+		}
+	}
+	
+	protected def onMessage(String message) {
 		try {
 			val actionMessage = gson.fromJson(message, ActionMessage)
 			val action = actionMessage.action.asJsonObject
@@ -81,7 +93,4 @@ class DiagramEndpoint extends Endpoint implements MessageHandler.Whole<String> {
 		val messageStatus = new Status(severity, YangDiagramPlugin.PLUGIN_ID, content)
 		StatusManager.manager.handle(messageStatus, StatusManager.LOG)
 	}
-	
-	
-	
 }
