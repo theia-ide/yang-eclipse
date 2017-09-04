@@ -12,12 +12,9 @@ node {
 		
 		stage 'Build YANG diagram client' 
 		dir ('diagram') {
-			sh 'npm --version'
-			sh 'node --version'
-			sh 'npm install yarn'
-			sh './node_modules/.bin/yarn install --non-interactive --verbose'
-			sh './node_modules/.bin/yarn run setup --non-interactive --verbose'
-			sh './node_modules/.bin/yarn run build --non-interactive --verbose'
+			sh 'yarn install --non-interactive --verbose'
+			sh 'yarn run setup --non-interactive --verbose'
+			sh 'yarn run build --non-interactive --verbose'
 		}
 		
 		stage 'Build YANG Eclipse plug-ins' 
