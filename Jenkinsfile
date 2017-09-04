@@ -15,9 +15,9 @@ node {
 			sh 'npm --version'
 			sh 'node --version'
 			sh 'npm install yarn'
-			sh './node_modules/yarn/bin/yarn install --non-interactive'
-			sh './node_modules/yarn/bin/yarn run setup --non-interactive'
-			sh './node_modules/yarn/bin/yarn run build --non-interactive'
+			sh './node_modules/yarn/bin/yarn install --non-interactive --verbose'
+			sh './node_modules/yarn/bin/yarn run setup --non-interactive --verbose'
+			sh './node_modules/yarn/bin/yarn run build --non-interactive --verbose'
 		}
 		
 		stage 'Build YANG Eclipse plug-ins' 
