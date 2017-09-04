@@ -12,6 +12,7 @@ node {
 		
 		stage 'Build YANG diagram client' 
 		dir ('diagram') {
+			sh 'ls -la'
 			sh 'yarn install --non-interactive --verbose'
 			sh 'yarn run setup --non-interactive --verbose'
 			sh 'yarn run build --non-interactive --verbose'
