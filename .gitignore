@@ -5,3 +5,4 @@ node_modules/
 target/
 yang-eclipse/io.typefox.yang.eclipse.diagram/diagram
 yang-eclipse/io.typefox.yang.eclipse/language-server
+yang-language-server_diagram-extension_0.1.0-SNAPSHOT.zip

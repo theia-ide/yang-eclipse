@@ -23,29 +23,30 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>xtend-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.0.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-resources</id>
-						<phase>validate</phase>
+						<id>download-files</id>
+						<phase>prepare-package</phase>
 						<goals>
-							<goal>copy-resources</goal>
+							<goal>run</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/language-server</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${basedir}/../../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server</directory>
-								</resource>
-							</resources>
+							<tasks>
+								<get src="http://services.typefox.io/open-source/jenkins/job/yang-lsp/job/master/lastSuccessfulBuild/artifact/yang-lsp/build/yang-language-server_diagram-extension_0.1.0-SNAPSHOT.zip" 
+									dest="yang-language-server_diagram-extension_0.1.0-SNAPSHOT.zip"
+									verbose="true" usetimestamp="true" />
+								<unzip src="yang-language-server_diagram-extension_0.1.0-SNAPSHOT.zip" dest="."/>
+								<move file="yang-language-server-0.1.0-SNAPSHOT" toFile="language-server"/>
+							</tasks>
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

@@ -12,15 +12,15 @@ node {
 		dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
 		dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
 		
-		stage 'Yang LSP build'
-		dir ($WORKSPACE) {
-			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/yang-tools/yang-lsp.git']]])
-		}
-		dir ("$WORKSPACE/yang-lsp/yang-lsp") {
-			sh './gradlew installDist'
+		stage 'Build YANG diagram client'
+		dir ('diagram') {
+			sh 'npm install yarn'
+			sh './node_modules/yarn/bin/yarn install'
+			sh './node_modules/yarn/bin/yarn run setup'
+			sh './node_modules/yarn/bin/yarn run build'
 		}
 
-		stage 'Yang Eclipse Build'
+		stage 'Build YANG Eclipse plug-ins'
 		def mvnHome = tool 'M3'
 		dir('yang-eclipse') {
 			try {
