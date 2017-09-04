@@ -14,7 +14,7 @@ node {
 		dir ('diagram') {
 			sh 'npm --version'
 			sh 'node --version'
-			sh 'npm install -g yarn'
+			sh 'npm install yarn'
 			sh './node_modules/yarn/bin/yarn install --non-interactive'
 			sh './node_modules/yarn/bin/yarn run setup --non-interactive'
 			sh './node_modules/yarn/bin/yarn run build --non-interactive'
