@@ -28,7 +28,7 @@ node {
 //			} finally {
 //				step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
 //			}
-			archive 'build/**'	
+			archive 'target/**'	
 		}	
 		if (currentBuild.result == 'UNSTABLE') {
 			slackSend color: 'warning', message: "Build Unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
