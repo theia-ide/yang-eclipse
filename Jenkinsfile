@@ -13,11 +13,10 @@ node {
 		stage 'Build YANG diagram client' 
 		dir ('diagram') {
 			sh 'npm install yarn'
-			sh './node_modules/yarn/bin/yarn run update'
 			sh './node_modules/yarn/bin/yarn install'
 			sh './node_modules/yarn/bin/yarn run setup'
 			sh './node_modules/yarn/bin/yarn run build'
-		}	
+		}
 		
 		stage 'Build YANG Eclipse plug-ins' 
 		def mvnHome = tool 'M3'
