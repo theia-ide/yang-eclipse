@@ -28,8 +28,11 @@ node {
 //			} finally {
 //				step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
 //			}
-			archive 'target/**'	
 		}	
+		
+		stage 'Archive build results'
+		archiveArtifacts artifacts: '**/target/**', fingerprint: true
+
 		if (currentBuild.result == 'UNSTABLE') {
 			slackSend color: 'warning', message: "Build Unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 		} else {
