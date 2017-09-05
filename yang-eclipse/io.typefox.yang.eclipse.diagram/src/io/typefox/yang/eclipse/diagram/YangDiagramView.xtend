@@ -43,6 +43,14 @@ class YangDiagramView extends ViewPart {
 				''')
 			}
 		})
+		partName = fileName
+	}
+
+	protected def getFileName() {
+		val fileNameWithExtension = filePath?.split('/')?.last
+		if(fileNameWithExtension?.endsWith('.yang'))
+			fileNameWithExtension.substring(0, fileNameWithExtension.length - 5)
+		else fileNameWithExtension ?: 'YANG Diagram'
 	}
 	
 	override setFocus() {
