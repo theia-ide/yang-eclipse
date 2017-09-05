@@ -10,7 +10,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const buildRoot = path.resolve(__dirname, 'lib');
 const appRoot = path.resolve(__dirname, 'app');
-const sprottyCssPath = 'node_modules/sprotty/css';
+const yangThemes = 'node_modules/yang-sprotty/css/themes';
+const sprottyCss = 'node_modules/sprotty/css';
 
 module.exports = function(env) {
     if (!env) {
@@ -18,8 +19,11 @@ module.exports = function(env) {
     }
     const plugins = [
         new CopyWebpackPlugin([{
-            from: sprottyCssPath,
-            to: 'sprotty'
+            from: yangThemes,
+            to: 'css'
+        },{
+            from: sprottyCss,
+            to: 'css'
         }])
     ];
     if (env.uglify) {

@@ -12,6 +12,7 @@ import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
 import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
 import java.net.URLEncoder
 import org.apache.log4j.Logger
+import org.eclipse.e4.ui.css.swt.theme.IThemeEngine
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.swt.SWT
 import org.eclipse.swt.browser.Browser
@@ -19,6 +20,7 @@ import org.eclipse.swt.events.MouseEvent
 import org.eclipse.swt.events.MouseTrackAdapter
 import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Composite
+import org.eclipse.swt.widgets.Display
 import org.eclipse.ui.part.ViewPart
 
 class YangDiagramView extends ViewPart {
@@ -85,7 +87,17 @@ class YangDiagramView extends ViewPart {
 		val serverManager = YangDiagramPlugin.instance.serverManager
 		serverManager.start()
 		val connector = serverManager.server.connectors.head as ServerConnector
-		val url = '''http://«connector.host»:«connector.localPort»/diagram.html?client=«encodeParameter(clientId)»&path=«encodeParameter(path)»'''
+		val url = '''http://«
+				connector.host
+			»:«
+				connector.localPort
+			»/diagram.html?client=«
+				encodeParameter(clientId)
+			»&path=«
+				encodeParameter(path)
+			»&theme=«
+				colorTheme
+			»'''
 		browser.url = url
 		LOG.warn(url)
 	}
@@ -108,5 +120,14 @@ class YangDiagramView extends ViewPart {
 	
 	def getFilePath() {
 		filePath
+	}
+	
+	def getColorTheme() {
+		var engine= Display.^default.getData("org.eclipse.e4.ui.css.swt.theme") as IThemeEngine
+		val id = engine.activeTheme.id
+		if(id.contains('dark'))
+			return 'dark'
+		else 
+			return 'light'
 	}
 }

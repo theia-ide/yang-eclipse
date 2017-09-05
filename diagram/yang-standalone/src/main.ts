@@ -27,6 +27,14 @@ if (sourcePath) {
         diagramServer.clientId = urlParameters.client
     diagramServer.listen(websocket)
 
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.type = 'text/css'
+    link.href = (urlParameters.theme === 'dark') 
+        ? 'css/dark-theme.css'
+        : 'css/light-theme.css'
+    document.getElementsByTagName('head')[0].appendChild(link)
+        
     websocket.addEventListener('open', event => {
         diagramServer.handle(new RequestModelAction({ sourceUri: 'file://' + sourcePath }))
     })

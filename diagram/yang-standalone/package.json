@@ -20,10 +20,9 @@
     "source-map-loader": "^0.2.1",
     "url-loader": "^0.5.8",
     "style-loader": "^0.18.2"
-
   },
   "scripts": {
-    "clean": "rimraf lib app/*.bundle.js app/*.bundle.js.map app/sprotty",
+    "clean": "rimraf lib app/bundle.js app/bundle.js.map app/css",
     "build": "tsc && webpack",
     "build2": "tsc && webpack --env.uglify",
     "watch": "tsc-watch --onSuccess webpack"
