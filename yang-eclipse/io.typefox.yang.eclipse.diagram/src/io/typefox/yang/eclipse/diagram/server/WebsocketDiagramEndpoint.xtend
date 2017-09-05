@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.Status
 import org.eclipse.lsp4e.LSPEclipseUtils
 import org.eclipse.ui.statushandlers.StatusManager
 
-class DiagramEndpoint extends Endpoint implements MessageHandler.Partial<String> {
+class WebsocketDiagramEndpoint extends Endpoint implements MessageHandler.Partial<String> {
 	
 	val gson = new Gson
 	
@@ -30,6 +30,8 @@ class DiagramEndpoint extends Endpoint implements MessageHandler.Partial<String>
 	IFile sourceFile
 	
 	val List<String> partialMessages = newArrayList
+	
+	val localActionHandler = new LocalActionHandler()
 	
 	override onOpen(Session session, EndpointConfig config) {
 		this.session = session
@@ -59,10 +61,11 @@ class DiagramEndpoint extends Endpoint implements MessageHandler.Partial<String>
 			if (kind == LoggingAction.KIND) {
 				handleLogMessage(gson.fromJson(action, LoggingAction))
 			} else {
-			val server = findLanguageServerFor(actionMessage, kind)
-				if (server instanceof DiagramServer)
-					server.accept(actionMessage)
-
+				if(!localActionHandler.handleLocally(actionMessage)) {
+					val server = findLanguageServerFor(actionMessage, kind)
+					if (server instanceof DiagramServer)
+						server.accept(actionMessage)					
+				}
 			}
 		} catch (Exception exception) {
 			StatusManager.manager.handle(new Status(IStatus.ERROR, YangDiagramPlugin.PLUGIN_ID,

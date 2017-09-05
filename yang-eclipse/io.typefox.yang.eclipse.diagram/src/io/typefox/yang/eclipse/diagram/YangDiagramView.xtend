@@ -6,26 +6,20 @@
  */
 package io.typefox.yang.eclipse.diagram
 
+import com.google.gson.Gson
+import com.google.gson.JsonElement
+import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
 import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
 import java.net.URLEncoder
 import org.apache.log4j.Logger
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.swt.SWT
 import org.eclipse.swt.browser.Browser
+import org.eclipse.swt.events.MouseEvent
+import org.eclipse.swt.events.MouseTrackAdapter
 import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
-import org.eclipse.swt.events.MouseTrackAdapter
-import org.eclipse.swt.events.MouseEvent
-import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
-import com.google.gson.JsonElement
-import org.eclipse.lsp4e.LanguageServiceAccessor
-import java.util.ResourceBundle
-import org.eclipse.core.resources.ResourcesPlugin
-import org.eclipse.core.runtime.Path
-import io.typefox.yang.eclipse.diagram.sprotty.DiagramAwareLanguageServer
-import io.typefox.yang.eclipse.diagram.sprotty.IdeDiagramClient
-import com.google.gson.Gson
 
 class YangDiagramView extends ViewPart {
 
@@ -101,21 +95,18 @@ class YangDiagramView extends ViewPart {
 	}
 
 	def sendAction(JsonElement theAction) {
-		val diagramClient = getDiagramClient()
-		if (diagramClient !== null) {
+		val session = YangDiagramPlugin.instance.serverManager.getSessionFor(clientId)
+		if (session !== null && session.isOpen) {
 			val actionMessage = new ActionMessage() => [
-				clientId = filePath
+				clientId = this.clientId
 				action = theAction
 			]
-			diagramClient.accept(actionMessage)
+			val json = gson.toJson(actionMessage)
+			session.asyncRemote.sendText(json)
 		}
 	}
-
-	protected def getDiagramClient() {
-		val file = ResourcesPlugin.workspace.root.getFileForLocation(new Path(filePath))
-		if (file?.exists)
-			LanguageServiceAccessor.getLanguageServers(file, [true]).head as DiagramAwareLanguageServer
-		else
-			null
+	
+	def getFilePath() {
+		filePath
 	}
 }

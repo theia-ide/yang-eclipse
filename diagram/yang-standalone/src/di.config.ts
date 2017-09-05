@@ -8,12 +8,13 @@
 import { Container } from "inversify"
 import { createYangDiagramContainer } from 'yang-sprotty/lib'
 import {
-    WebSocketDiagramServer, TYPES, ForwardingLogger, LogLevel
+    TYPES, ForwardingLogger, LogLevel
 } from 'sprotty/lib'
+import { YangStandaloneServer } from './yang-standalone-server'
 
 export default function createContainer(): Container {
     const container = createYangDiagramContainer('sprotty')
-    container.bind(TYPES.ModelSource).to(WebSocketDiagramServer).inSingletonScope()
+    container.bind(TYPES.ModelSource).to(YangStandaloneServer).inSingletonScope()
     container.rebind(TYPES.ILogger).to(ForwardingLogger).inSingletonScope()
     container.rebind(TYPES.LogLevel).toConstantValue(LogLevel.info)
     return container

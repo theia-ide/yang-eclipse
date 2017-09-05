@@ -49,7 +49,7 @@ class SprottyServerManager {
         context.addServlet(defaultServletHolder, '/')
 
         container = WebSocketServerContainerInitializer.configureContext(context)
-        val webSocketConfig = ServerEndpointConfig.Builder.create(DiagramEndpoint, '/sprotty').build()
+        val webSocketConfig = ServerEndpointConfig.Builder.create(WebsocketDiagramEndpoint, '/sprotty').build()
         container.addEndpoint(webSocketConfig)
         container.defaultMaxTextMessageBufferSize = 1 << 20
 		
