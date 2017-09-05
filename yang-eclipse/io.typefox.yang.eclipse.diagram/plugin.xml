@@ -26,6 +26,13 @@
             id="io.typefox.yang.eclipse.diagram.open"
             name="Open Diagram">
       </command>
+      <command
+            categoryId="io.typefox.yang"
+            defaultHandler="io.typefox.yang.eclipse.diagram.ExportDiagramHandler"
+            description="Export this diargam to SVG"
+            id="io.typefox.yang.eclipse.diagram.export"
+            name="Export Diagram">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -83,5 +90,18 @@
 		         </command>
 	         </toolbar>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:io.typefox.yang.eclipse.diagram">
+         <command
+               commandId="io.typefox.yang.eclipse.diagram.export"
+               icon="icons/export.gif"
+               label="Export Diagram"
+               style="push">
+         </command>
+       </menuContribution>
    </extension>
 </plugin>
