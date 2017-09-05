@@ -10,8 +10,11 @@ import org.eclipse.core.commands.AbstractHandler
 import org.eclipse.core.commands.ExecutionEvent
 import org.eclipse.core.commands.ExecutionException
 import org.eclipse.core.resources.IFile
+import org.eclipse.jface.text.ITextSelection
+import org.eclipse.jface.viewers.ISelection
 import org.eclipse.jface.viewers.IStructuredSelection
 import org.eclipse.lsp4e.LSPEclipseUtils
+import org.eclipse.ui.IFileEditorInput
 import org.eclipse.ui.IWorkbenchPage
 import org.eclipse.ui.PlatformUI
 import org.eclipse.ui.handlers.HandlerUtil
@@ -20,12 +23,21 @@ class OpenDiagramHandler extends AbstractHandler {
 	
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val selection = HandlerUtil.getCurrentSelection(event)
-		if (selection instanceof IStructuredSelection) {
-			selection.toList.filter(IFile).forEach[openDiagram]
-		}
+		selection?.file?.openDiagram
 		return null
 	}
 	
+	protected def getFile(ISelection selection) {
+		if(selection instanceof ITextSelection) {
+			val editorInput = PlatformUI.workbench.activeWorkbenchWindow?.activePage?.activeEditor?.editorInput
+			if(editorInput instanceof IFileEditorInput)
+				return editorInput.file
+		}
+		if (selection instanceof IStructuredSelection) 
+			selection.toList.filter(IFile).head
+		
+	}
+ 	
 	protected def void openDiagram(IFile file) {
 		val workbenchPage = PlatformUI.workbench.activeWorkbenchWindow?.activePage
 		val fileUri = LSPEclipseUtils.toUri(file)

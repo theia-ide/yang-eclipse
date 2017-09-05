@@ -30,8 +30,8 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.ui.popup.any">
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
                commandId="io.typefox.yang.eclipse.diagram.open"
                icon="icons/diagram.png"
@@ -46,7 +46,7 @@
                 </count>
                 <iterate>
                   <adapt
-                        type="org.eclipse.core.resources.IResource">
+                        type="org.eclipse.core.resources.IFile">
                      <test
                            property="org.eclipse.core.resources.extension"
                            value="yang">
@@ -57,6 +57,31 @@
             </visibleWhen>
          </command>
       </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+            <toolbar id="io.typefox.yang.eclipse.toolbar">
+		         <command
+		               commandId="io.typefox.yang.eclipse.diagram.open"
+		               icon="icons/diagram.png"
+		               label="Open in Diagram"
+		               style="push"
+		               tooltip="Open in a YANG Diagram Viewer">
+			         <visibleWhen
+			               checkEnabled="false">
+		                <count value="1">
+		                </count>
+		                <iterate>
+		                  <adapt
+		                        type="org.eclipse.core.resources.IFile">
+		                     <test
+		                           property="org.eclipse.core.resources.extension"
+		                           value="yang">
+		                     </test>
+		                  </adapt>
+		                </iterate>
+			         </visibleWhen>
+		         </command>
+	         </toolbar>
+      </menuContribution>
    </extension>
-
 </plugin>
