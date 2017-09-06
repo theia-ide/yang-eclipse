@@ -26,3 +26,4 @@ Require-Bundle: com.google.guava,
  org.eclipse.lsp4j.jsonrpc;bundle-version="0.3.0"
 Export-Package: io.typefox.yang.eclipse
 Eclipse-BundleShape: dir
+Bundle-Activator: io.typefox.yang.eclipse.YangEclipseActivator
