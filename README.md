@@ -1,6 +1,6 @@
 # yang-eclipse
 
-An Eclipse Plug-in for YANG using a YANG nanguage server and a sprotty diagram
+An Eclipse Plug-in for YANG using a [YANG language server](https://github.com/yang-tools/yang-lsp) and a [YANG diagram](https://github.com/yang-tools/yang-sprotty) based on [sprotty]().
 
 ## Getting Started
 
