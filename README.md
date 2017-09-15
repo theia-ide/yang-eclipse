@@ -9,7 +9,7 @@ Point your Eclipse update manager to our [Jenkins update-site](http://services.t
 ## Build It Yourself
 
 ```bash
-git clone https://github.com/yang-tools/yang-eclipse.git
+git clone --recursive https://github.com/yang-tools/yang-eclipse.git
 cd yang-eclipse/diagram
 yarn install
 yarn run setup
