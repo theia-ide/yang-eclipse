@@ -14,7 +14,7 @@ import 'yang-sprotty/css/diagram.css'
 const WebSocket = require("reconnecting-websocket")
 
 const urlParameters = getParameters()
-const sourcePath = urlParameters.path
+const sourcePath = urlParameters.path.replace('/%3A/g', ':')
 if (sourcePath) {
     const container = createContainer()
     const websocket = new WebSocket('ws://' + window.location.host + '/sprotty')
