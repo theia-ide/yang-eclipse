@@ -41,7 +41,8 @@ class OpenDiagramHandler extends AbstractHandler {
 	protected def void openDiagram(IFile file) {
 		val workbenchPage = PlatformUI.workbench.activeWorkbenchWindow?.activePage
 		val fileUri = LSPEclipseUtils.toUri(file)
-		val viewPart = workbenchPage?.showView(YangDiagramView.ID, fileUri.path, IWorkbenchPage.VIEW_CREATE)
+		val secondaryId = fileUri.path.replace(':', '%3A')
+		val viewPart = workbenchPage?.showView(YangDiagramView.ID, secondaryId, IWorkbenchPage.VIEW_CREATE)
 		if (viewPart !== null) {
 			workbenchPage.activate(viewPart)
 		}
