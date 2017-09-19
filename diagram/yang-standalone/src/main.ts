@@ -9,7 +9,6 @@ import 'reflect-metadata';
 import { TYPES, WebSocketDiagramServer, RequestModelAction, ActionHandlerRegistry, SelectCommand } from "sprotty/lib"
 import { getParameters } from "./url-parameters"
 import createContainer from "./di.config"
-import 'yang-sprotty/css/diagram.css'
 
 const WebSocket = require("reconnecting-websocket")
 
@@ -31,8 +30,8 @@ if (sourcePath) {
     link.rel = 'stylesheet'
     link.type = 'text/css'
     link.href = (urlParameters.theme === 'dark') 
-        ? 'css/dark-theme.css'
-        : 'css/light-theme.css'
+        ? 'css/dark/diagram.css'
+        : 'css/light/diagram.css'
     document.getElementsByTagName('head')[0].appendChild(link)
         
     websocket.addEventListener('open', event => {
