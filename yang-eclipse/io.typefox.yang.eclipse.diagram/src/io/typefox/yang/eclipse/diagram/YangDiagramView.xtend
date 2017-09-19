@@ -39,7 +39,7 @@ class YangDiagramView extends ViewPart {
 		parent.layout = new FillLayout
 		browser = new Browser(parent, SWT.NONE)
 		if (!viewSite.secondaryId.nullOrEmpty) {
-			showFile(viewSite.secondaryId)
+			showFile(viewSite.secondaryId.replace('%3A', ':'))
 		}
 		browser.addMouseTrackListener(new MouseTrackAdapter() {
 			override mouseEnter(MouseEvent e) {

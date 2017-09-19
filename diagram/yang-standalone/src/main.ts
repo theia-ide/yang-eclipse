@@ -13,7 +13,7 @@ import createContainer from "./di.config"
 const WebSocket = require("reconnecting-websocket")
 
 const urlParameters = getParameters()
-const sourcePath = urlParameters.path.replace('/%3A/g', ':')
+const sourcePath = urlParameters.path
 if (sourcePath) {
     const container = createContainer()
     const websocket = new WebSocket('ws://' + window.location.host + '/sprotty')
