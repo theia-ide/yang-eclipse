@@ -30,7 +30,13 @@ module.exports = function(env) {
         plugins.push(new webpack.optimize.UglifyJsPlugin());
     }
     return {
-        entry: path.resolve(buildRoot, 'main'),
+        entry: [
+            'core-js/es6/map', 
+            'core-js/es6/promise', 
+            'core-js/es6/string', 
+            'core-js/es6/symbol', 
+            path.resolve(buildRoot, 'main')
+        ],
         output: {
             filename: 'bundle.js',
             path: appRoot
