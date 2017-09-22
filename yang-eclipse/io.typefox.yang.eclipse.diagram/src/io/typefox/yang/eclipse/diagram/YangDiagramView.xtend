@@ -86,6 +86,22 @@ class YangDiagramView extends ViewPart {
 				''')
 			}
 		})
+		parent.addControlListener(new ControlAdapter() {
+			override controlResized(ControlEvent e) {
+				super.controlResized(e)
+				val size = (e.widget as Control).size
+				val action = new JsonObject => [
+					addProperty('kind', 'initializeCanvasBounds')
+					add('newCanvasBounds', new JsonObject => [
+						addProperty('x', 0)
+						addProperty('y', 0)
+						addProperty('width', size.x)
+						addProperty('height', size.y)
+					])
+				]
+				sendAction(action)
+			}
+		})
 	}
 
 	protected def getFileName() {
