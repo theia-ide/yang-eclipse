@@ -29,9 +29,23 @@
       <command
             categoryId="io.typefox.yang"
             defaultHandler="io.typefox.yang.eclipse.diagram.ExportDiagramHandler"
-            description="Export this diargam to SVG"
+            description="Export this diagram to SVG"
             id="io.typefox.yang.eclipse.diagram.export"
             name="Export Diagram">
+      </command>
+      <command
+            categoryId="io.typefox.yang"
+            defaultHandler="io.typefox.yang.eclipse.diagram.CenterDiagramHandler"
+            description="Center the selected elements"
+            id="io.typefox.yang.eclipse.diagram.center"
+            name="Center">
+      </command>
+      <command
+            categoryId="io.typefox.yang"
+            defaultHandler="io.typefox.yang.eclipse.diagram.FitDiagramHandler"
+            description="Fit the selected elements to view"
+            id="io.typefox.yang.eclipse.diagram.fit"
+            name="FitToView">
       </command>
    </extension>
    <extension
@@ -100,6 +114,18 @@
                commandId="io.typefox.yang.eclipse.diagram.export"
                icon="icons/export.gif"
                label="Export Diagram"
+               style="push">
+         </command>
+         <command
+               commandId="io.typefox.yang.eclipse.diagram.center"
+               icon="icons/center.png"
+               label="Center"
+               style="push">
+         </command>
+         <command
+               commandId="io.typefox.yang.eclipse.diagram.fit"
+               icon="icons/fit.png"
+               label="Fit to View"
                style="push">
          </command>
        </menuContribution>
