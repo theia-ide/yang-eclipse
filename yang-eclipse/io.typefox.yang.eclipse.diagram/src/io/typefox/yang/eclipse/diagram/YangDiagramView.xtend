@@ -14,14 +14,23 @@ import java.net.URLEncoder
 import org.apache.log4j.Logger
 import org.eclipse.e4.ui.css.swt.theme.IThemeEngine
 import org.eclipse.jetty.server.ServerConnector
+import org.eclipse.lsp4e.LSPEclipseUtils
 import org.eclipse.swt.SWT
 import org.eclipse.swt.browser.Browser
+import org.eclipse.swt.events.ControlAdapter
+import org.eclipse.swt.events.ControlEvent
 import org.eclipse.swt.events.MouseEvent
 import org.eclipse.swt.events.MouseTrackAdapter
 import org.eclipse.swt.layout.FillLayout
 import org.eclipse.swt.widgets.Composite
+import org.eclipse.swt.widgets.Control
 import org.eclipse.swt.widgets.Display
+import org.eclipse.ui.IEditorPart
+import org.eclipse.ui.IFileEditorInput
+import org.eclipse.ui.IPartListener
+import org.eclipse.ui.IWorkbenchPart
 import org.eclipse.ui.part.ViewPart
+import com.google.gson.JsonObject
 
 class YangDiagramView extends ViewPart {
 
@@ -39,7 +48,34 @@ class YangDiagramView extends ViewPart {
 		parent.layout = new FillLayout
 		browser = new Browser(parent, SWT.NONE)
 		if (!viewSite.secondaryId.nullOrEmpty) {
-			showFile(viewSite.secondaryId.replace('%3A', ':'))
+			connect(viewSite.secondaryId.replace('%3A', ':'))
+			partName = fileName		
+		} else {
+			site.page.addPartListener(new IPartListener() {
+				override partActivated(IWorkbenchPart part) {
+					if (part.site.id == 'io.typefox.YangEditor') {
+						disconnect()
+						val file = ((part as IEditorPart).editorInput as IFileEditorInput).file
+						val path = LSPEclipseUtils.toUri(file).path
+						connect(path)
+					}
+				}
+				
+				override partBroughtToTop(IWorkbenchPart part) {
+				}
+				
+				override partClosed(IWorkbenchPart part) {
+					if (part.site.id == 'io.typefox.YangEditor') 
+						disconnect()
+				}
+				
+				override partDeactivated(IWorkbenchPart part) {
+				}
+				
+				override partOpened(IWorkbenchPart part) {
+				}
+				
+			})
 		}
 		browser.addMouseTrackListener(new MouseTrackAdapter() {
 			override mouseEnter(MouseEvent e) {
@@ -50,7 +86,6 @@ class YangDiagramView extends ViewPart {
 				''')
 			}
 		})
-		partName = fileName
 	}
 
 	protected def getFileName() {
@@ -66,6 +101,15 @@ class YangDiagramView extends ViewPart {
 	}
 
 	override dispose() {
+		disconnect()
+		super.dispose()
+	}
+	
+	def String getClientId() {
+		class.simpleName + '_' + hashCode
+	}
+
+	protected def void disconnect() {
 		if (filePath !== null) {
 			val bundle = YangDiagramPlugin.instance
 			val server = bundle.getLanguageServer('file:' + filePath)
@@ -77,14 +121,9 @@ class YangDiagramView extends ViewPart {
 				session.close()
 			}			
 		}
-		super.dispose()
 	}
 
-	def String getClientId() {
-		class.simpleName + '_' + hashCode
-	}
-
-	protected def void showFile(String path) {
+	protected def void connect(String path) {
 		this.filePath = path
 		val serverManager = YangDiagramPlugin.instance.serverManager
 		serverManager.start()
