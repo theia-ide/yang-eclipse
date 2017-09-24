@@ -58,14 +58,10 @@ class WebsocketDiagramEndpoint extends Endpoint implements MessageHandler.Partia
 			val actionMessage = gson.fromJson(message, ActionMessage)
 			val action = actionMessage.action.asJsonObject
 			val kind = action.get('kind')?.asString
-			if (kind == LoggingAction.KIND) {
-				handleLogMessage(gson.fromJson(action, LoggingAction))
-			} else {
-				if(!localActionHandler.handleLocally(actionMessage)) {
-					val server = findLanguageServerFor(actionMessage, kind)
-					if (server instanceof DiagramServer)
-						server.accept(actionMessage)					
-				}
+			if(!localActionHandler.handleLocally(actionMessage)) {
+				val server = findLanguageServerFor(actionMessage, kind)
+				if (server instanceof DiagramServer)
+					server.accept(actionMessage)					
 			}
 		} catch (Exception exception) {
 			StatusManager.manager.handle(new Status(IStatus.ERROR, YangDiagramPlugin.PLUGIN_ID,
@@ -85,15 +81,4 @@ class WebsocketDiagramEndpoint extends Endpoint implements MessageHandler.Partia
 		return YangDiagramPlugin.instance.getLanguageServer(sourceFile)
 	}
 	
-	protected def handleLogMessage(LoggingAction action) {
-		val parameters = if (action.params !== null && !action.params.empty) ' (' + action.params.join(', ') + ')' else ''
-		val content = action.caller + ': ' + action.message + parameters
-		val severity = switch action.severity {
-			case 'error': IStatus.ERROR
-			case 'warn': IStatus.WARNING
-			default: IStatus.INFO
-		}
-		val messageStatus = new Status(severity, YangDiagramPlugin.PLUGIN_ID, content)
-		StatusManager.manager.handle(messageStatus, StatusManager.LOG)
-	}
 }

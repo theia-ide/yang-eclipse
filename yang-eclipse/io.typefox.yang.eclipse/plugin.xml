@@ -15,7 +15,7 @@
          point="org.eclipse.lsp4e.languageServer">
       <server
             class="io.typefox.yang.eclipse.YangLanguageServer"
-            clientImpl="io.typefox.yang.eclipse.diagram.DiagramAwareLanguageClientImpl"
+            clientImpl="io.typefox.yang.eclipse.diagram.server.DiagramAwareLanguageClientImpl"
             id="io.typefox.yang.eclipse.server"
             label="YANG Language Server"
             serverInterface="io.typefox.yang.eclipse.diagram.sprotty.DiagramAwareLanguageServer">
