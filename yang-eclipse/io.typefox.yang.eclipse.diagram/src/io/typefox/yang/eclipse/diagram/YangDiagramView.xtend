@@ -58,18 +58,18 @@ class YangDiagramView extends ViewPart {
 	val sharedImages = WorkbenchPlugin.^default.sharedImages
 	
 	override createPartControl(Composite parent) {
-		comp = new Composite(parent, SWT.NONE)
+		comp = new Composite(parent, SWT.NO_SCROLL)
 		comp.layout = new GridLayout => [
 			numColumns = 1
 		]
-		browser = new Browser(comp, SWT.NONE)
+		browser = new Browser(comp, SWT.NO_SCROLL)
 		browser.layoutData = new GridData => [
 			horizontalAlignment = GridData.FILL
 			verticalAlignment = GridData.FILL
 			grabExcessHorizontalSpace = true
 			grabExcessVerticalSpace = true
 		]
-		statusBar = new Composite(comp, SWT.NONE)
+		statusBar = new Composite(comp, SWT.NO_SCROLL)
 		statusBar.layout = new RowLayout 
 		statusBar.layoutData = new GridData => [
 			exclude = true
