@@ -33,7 +33,7 @@ import org.eclipse.ui.IEditorPart
 import org.eclipse.ui.IFileEditorInput
 import org.eclipse.ui.IPartListener
 import org.eclipse.ui.IWorkbenchPart
-import org.eclipse.ui.internal.WorkbenchPlugin
+import org.eclipse.ui.PlatformUI
 import org.eclipse.ui.part.ViewPart
 
 import static org.eclipse.ui.ISharedImages.*
@@ -55,7 +55,7 @@ class YangDiagramView extends ViewPart {
 	Label statusBarIcon
 	Label statusBarMessage
 	
-	val sharedImages = WorkbenchPlugin.^default.sharedImages
+	val sharedImages = PlatformUI.workbench.sharedImages
 	
 	override createPartControl(Composite parent) {
 		comp = new Composite(parent, SWT.NO_SCROLL)
