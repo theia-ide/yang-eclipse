@@ -1,6 +1,6 @@
 # yang-eclipse
 
-An Eclipse Plug-in for YANG using a [YANG language server](https://github.com/yang-tools/yang-lsp) and a [YANG diagram](https://github.com/yang-tools/yang-sprotty) based on [sprotty]().
+An Eclipse Plug-in for YANG using a [YANG language server](https://github.com/theia-ide/yang-lsp) and a [YANG diagram](https://github.com/theia-ide/yang-sprotty) based on [sprotty]().
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ Point your Eclipse update manager to our [Jenkins update-site](http://services.t
 ## Build It Yourself
 
 ```bash
-git clone --recursive https://github.com/yang-tools/yang-eclipse.git
+git clone --recursive https://github.com/theia-ide/yang-eclipse.git
 cd yang-eclipse/diagram
 yarn install
 yarn run setup
