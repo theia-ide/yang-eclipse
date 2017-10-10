@@ -1,7 +1,8 @@
 {
-  "name": "yang-eclipse-diagram",
+  "name": "yang-standalone",
   "version": "0.1.0",
   "description": "YANG diagram client for Eclipse",
+  "license": "Apache-2.0",
   "dependencies": {
     "reconnecting-websocket": "^3.0.7",
     "sprotty": "0.1.2",
@@ -22,9 +23,10 @@
     "style-loader": "^0.18.2"
   },
   "scripts": {
+    "prepare": "yarn run clean && yarn build",
     "clean": "rimraf lib app/bundle.js app/bundle.js.map app/css",
-    "build": "tsc && webpack",
-    "build2": "tsc && webpack --env.uglify",
-    "watch": "tsc -w"
+    "lint": "tslint -c ./tslint.json --project ./tsconfig.json",
+    "build": "tsc && yarn lint && webpack",
+    "watch": "tsc -w -p ./tsconfig.json"
   }
 }

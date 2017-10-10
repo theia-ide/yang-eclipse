@@ -8,12 +8,12 @@ Point your Eclipse update manager to our [Jenkins update-site](http://services.t
 
 ## Build It Yourself
 
+Requirements: Java 8, node 8, yarn 1.0.2
+
 ```bash
 git clone --recursive https://github.com/theia-ide/yang-eclipse.git
 cd yang-eclipse/diagram
-yarn install
-yarn run setup
-yarn run build
+yarn 
 cd ../yang-eclipse
 mvn clean install
 ```

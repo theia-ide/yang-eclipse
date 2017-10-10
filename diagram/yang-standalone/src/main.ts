@@ -29,11 +29,11 @@ if (sourcePath) {
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.type = 'text/css'
-    link.href = (urlParameters.theme === 'dark') 
+    link.href = (urlParameters.theme === 'dark')
         ? 'css/dark/diagram.css'
         : 'css/light/diagram.css'
     document.getElementsByTagName('head')[0].appendChild(link)
-        
+
     websocket.addEventListener('open', event => {
         diagramServer.handle(new RequestModelAction({ sourceUri: 'file://' + sourcePath }))
     })

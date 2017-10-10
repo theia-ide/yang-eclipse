@@ -1,10 +1,11 @@
 {
-  "lerna": "2.1.1",
-  "packages": [
-    "sprotty/client",
-    "yang-sprotty",
-    "yang-standalone"
-  ],
-  "npmClient": "yarn",
-  "version": "0.0.0"
-}
+    "lerna": "2.3.1",
+    "version": "independent",
+    "useWorkspaces": true,
+    "npmClient": "yarn",
+    "command": {
+      "run": {
+        "stream": true
+      }
+    }
+  }

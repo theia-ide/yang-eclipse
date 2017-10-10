@@ -1,14 +1,23 @@
 {
+	"name": "yang-eclipse",
+	"version": "0.0.1",
+	"description": "sprotty diagrams for the Yang DSL in Eclipse",
+	"author": "typefox.io",
 	"license": "Apache-2.0",
-	"devDependencies": {
+	"private": true,
+	"keywords": [
+	  "sprotty", "yang", "diagram"
+	],
+	  "devDependencies": {
 		"lerna": "^2.1.1"
 	},
 	"scripts": {
-		"setup": "lerna bootstrap --hoist -- --no-optional",
-		"refresh": "lerna clean --yes && yarn run setup",
-		"clean": "lerna run clean --parallel",
-		"build": "lerna run build --stream",
-		"watch": "lerna run watch --parallel",
-		"update": "git submodule foreach git pull origin master"
-	}
+		"prepare": "lerna run prepare",
+		"update": "git pull origin/master && git submodule foreach git pull origin/master"
+	},
+	"workspaces": [
+		"sprotty/client",
+		"yang-sprotty",
+		"yang-standalone"
+	]
 }
