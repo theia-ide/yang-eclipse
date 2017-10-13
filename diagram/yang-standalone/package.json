@@ -6,7 +6,7 @@
   "dependencies": {
     "reconnecting-websocket": "^3.0.7",
     "sprotty": "0.1.2",
-    "yang-sprotty": "0.0.1",
+    "yang-sprotty": "0.1.0",
     "core-js": "^2.5.1"
   },
   "devDependencies": {
