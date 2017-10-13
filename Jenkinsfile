@@ -14,9 +14,7 @@ node {
 		dir ('diagram') {
 			sh 'yarn config set workspaces-experimental true'
 			sh 'ls -la'
-			sh 'yarn install --non-interactive --verbose'
-			sh 'yarn run setup --non-interactive --verbose'
-			sh 'yarn run build --non-interactive --verbose'
+			sh 'yarn'
 		}
 		
 		stage 'Build YANG Eclipse plug-ins' 
