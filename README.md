@@ -2,9 +2,11 @@
 
 An Eclipse Plug-in for YANG using a [YANG language server](https://github.com/theia-ide/yang-lsp) and a [YANG diagram](https://github.com/theia-ide/yang-sprotty) based on [sprotty]().
 
-## Getting Started
+## Install it
 
-Point your Eclipse update manager to our [Jenkins update-site](http://services.typefox.io/open-source/jenkins/job/yang-eclipse/job/master/lastSuccessfulBuild/artifact/yang-eclipse/io.typefox.yang.eclipse.repository/target/repository/)
+YANG for Eclipse is available from the [Eclipse Marketplace](https://marketplace.eclipse.org/content/yang-eclipse). Just drag this button to your running Eclipse
+
+[![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](https://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=3710118 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client") 
 
 ## Build It Yourself
 
