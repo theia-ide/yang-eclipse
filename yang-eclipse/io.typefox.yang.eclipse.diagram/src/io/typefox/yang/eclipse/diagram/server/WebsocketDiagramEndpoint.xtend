@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import io.typefox.yang.eclipse.diagram.YangDiagramPlugin
 import io.typefox.yang.eclipse.diagram.sprotty.ActionMessage
 import io.typefox.yang.eclipse.diagram.sprotty.DiagramServer
+import java.util.ArrayList
 import java.util.List
 import javax.websocket.Endpoint
 import javax.websocket.EndpointConfig
@@ -29,7 +30,7 @@ class WebsocketDiagramEndpoint extends Endpoint implements MessageHandler.Partia
 	
 	IFile sourceFile
 	
-	val List<String> partialMessages = newArrayList
+	val List<String> partialMessages = new ArrayList
 	
 	val localActionHandler = new LocalActionHandler()
 	

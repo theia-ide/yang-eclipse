@@ -7,6 +7,7 @@
 package io.typefox.yang.eclipse
 
 import java.io.File
+import java.util.ArrayList
 import org.eclipse.core.runtime.FileLocator
 import org.eclipse.core.runtime.Platform
 import org.eclipse.lsp4e.server.ProcessStreamConnectionProvider
@@ -26,7 +27,7 @@ class YangLanguageServer implements StreamConnectionProvider {
 		} else {
 			try {
 				// TODO support the case when this plug-in is packaged in a jar
-				val commands = newArrayList
+				val commands = new ArrayList
 				val executableFile = new File(FileLocator.resolve(executable).toURI)
 				if(!executableFile.canExecute)
 					executableFile.setExecutable(true, false)
