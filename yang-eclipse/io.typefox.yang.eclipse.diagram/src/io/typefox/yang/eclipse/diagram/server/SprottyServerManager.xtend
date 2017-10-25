@@ -58,7 +58,11 @@ class SprottyServerManager {
 	
 	def synchronized void stop() {
 		if (server !== null) {
-			server.stop()
+			try {
+				server.stop()
+			} catch (Exception e) {
+				// Ignore
+			}
 		}
 	}
 	
