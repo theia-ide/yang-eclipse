@@ -5,8 +5,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "reconnecting-websocket": "^3.0.7",
-    "sprotty": "0.3.0",
-    "yang-sprotty": "0.1.0",
+    "sprotty": "0.2.1",
+    "yang-sprotty": "0.1.1",
     "core-js": "^2.5.1"
   },
   "devDependencies": {
