@@ -2,7 +2,7 @@
 <feature
       id="io.typefox.yang.eclipse.feature"
       label="YANG for Eclipse"
-      version="0.1.0.qualifier">
+      version="0.2.0.qualifier">
 
    <license url="http://www.apache.org/licenses/ ">
                                 Apache License
