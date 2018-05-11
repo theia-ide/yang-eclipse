@@ -54,6 +54,7 @@ class YangDiagramView extends ViewPart {
 	Composite statusBar
 	Label statusBarIcon
 	Label statusBarMessage
+	IPartListener partListener
 	
 	val sharedImages = PlatformUI.workbench.sharedImages
 	
@@ -82,7 +83,7 @@ class YangDiagramView extends ViewPart {
 			connect(viewSite.secondaryId.replace('%3A', ':'))
 			partName = fileName
 		} else {
-			site.page.addPartListener(new IPartListener() {
+			partListener = new IPartListener() {
 				override partActivated(IWorkbenchPart part) {
 					if (part.site.id == 'io.typefox.YangEditor') {
 						disconnect()
@@ -106,7 +107,8 @@ class YangDiagramView extends ViewPart {
 				override partOpened(IWorkbenchPart part) {
 				}
 
-			})
+			}
+			site.page.addPartListener(partListener)
 		}
 		browser.addMouseTrackListener(new MouseTrackAdapter() {
 			override mouseEnter(MouseEvent e) {
@@ -149,6 +151,8 @@ class YangDiagramView extends ViewPart {
 
 	override dispose() {
 		disconnect()
+		if(partListener !== null)
+			site.page.removePartListener(partListener)
 		super.dispose()
 	}
 
