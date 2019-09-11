@@ -45,7 +45,7 @@ class YangDiagramPlugin extends Plugin {
 	def getLanguageServer(IFile file) {
 		if (file !== null) {
 			val definition = LanguageServersRegistry.instance.getDefinition('io.typefox.yang.eclipse.server')
-			return LanguageServiceAccessor.getLanguageServer(file, definition)
+			return LanguageServiceAccessor.getLanguageServer(file, definition, null)
 		}
 	}
 	

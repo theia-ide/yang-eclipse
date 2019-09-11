@@ -47,4 +47,9 @@ class SocketStreamConnectionProvider implements StreamConnectionProvider {
 			}
 		}
 	}
+
+	override getErrorStream() {
+		return null
+	}
+
 }

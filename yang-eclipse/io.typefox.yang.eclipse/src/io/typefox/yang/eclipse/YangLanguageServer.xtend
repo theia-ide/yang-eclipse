@@ -69,7 +69,11 @@ class YangLanguageServer implements StreamConnectionProvider {
 		override getOutputStream() {
 			throw new RuntimeException(cause)
 		}
-		
+
+		override getErrorStream() {
+			throw new RuntimeException(cause)
+		}
+
 		override start() throws IOException {
 			throw new RuntimeException(cause)
 		}
