@@ -19,8 +19,8 @@ if (sourcePath) {
     const websocket = new WebSocket('ws://' + window.location.host + '/sprotty')
 
     const diagramServer = container.get<WebSocketDiagramServer>(TYPES.ModelSource)
-    const actionHandlerRegistry = container.get<ActionHandlerRegistry>(TYPES.ActionHandlerRegistry)
-    actionHandlerRegistry.register(SelectCommand.KIND, diagramServer)
+    const actionHandlerRegistryProvider = container.get<() => Promise<ActionHandlerRegistry>>(TYPES.ActionHandlerRegistryProvider)
+    actionHandlerRegistryProvider().then(registry => registry.register(SelectCommand.KIND, diagramServer))
 
     if (urlParameters.client)
         diagramServer.clientId = urlParameters.client

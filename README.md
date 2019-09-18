@@ -13,7 +13,7 @@ YANG for Eclipse is available from the [Eclipse Marketplace](https://marketplace
 Requirements: Java 8, node 8, yarn 1.0.2
 
 ```bash
-git clone --recursive https://github.com/theia-ide/yang-eclipse.git
+git clone https://github.com/theia-ide/yang-eclipse.git
 cd yang-eclipse/diagram
 yarn 
 cd ../yang-eclipse
